@@ -11,6 +11,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
+import {Google_login_provider} from './app.config';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -52,7 +54,7 @@ import 'hammerjs';
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '395208836880-lbgd8d95knsq4c3obvo0cu85b1sbaas4.apps.googleusercontent.com'
+              Google_login_provider
             ),
           },
         ],

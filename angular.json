@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "CRP-frontend-angular"
+  "defaultProject": "CRP-frontend-angular",
+  "cli": {
+    "analytics": false
+  }
 }
