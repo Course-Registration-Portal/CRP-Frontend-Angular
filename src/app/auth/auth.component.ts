@@ -1,6 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { SocialAuthService, SocialUser } from "angularx-social-login";
-import { GoogleLoginProvider } from "angularx-social-login";
+import { SocialAuthService, SocialUser } from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
+
+import { AuthService } from './auth.service';
+
+import { BASEURL } from '../shared/baseURL';
 
 
 @Component({
@@ -11,22 +16,41 @@ import { GoogleLoginProvider } from "angularx-social-login";
 export class AuthComponent implements OnInit {
 
   user: SocialUser;
-  loggedIn: boolean=false;
-  constructor(private authService: SocialAuthService) { }
+  loggedIn: boolean;
+  selectedCSV: File;
+
+  constructor(private socialAuthService: SocialAuthService, private http: HttpClient,
+              private authService: AuthService) {
+    this.selectedCSV = null;
+  }
 
   signInWithGoogle(): void {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
   signOut(): void {
-    this.authService.signOut();
+    this.socialAuthService.signOut();
+    this.authService.logout();
   }
 
   ngOnInit(): void {
-    this.authService.authState.subscribe((user) => {
+    this.socialAuthService.authState.subscribe((user) => {
       this.user = user;
+      this.authService.login(user.authToken);
       this.loggedIn = (user != null);
     });
   }
 
+  onFileSelected(event){
+    this.selectedCSV = event.target.files[0];
+  }
+
+  onUpload(){
+    const fd = new FormData();
+    fd.append('csv', this.selectedCSV, this.selectedCSV.name);
+    this.http.post(BASEURL + 'auth-api/upload-csv/', fd)
+      .subscribe(response => {
+        console.log(response);
+      });
+  }
 }

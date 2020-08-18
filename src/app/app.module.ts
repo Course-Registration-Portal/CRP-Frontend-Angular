@@ -1,3 +1,4 @@
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,6 +23,8 @@ import { AuthComponent } from './auth/auth.component';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider} from 'angularx-social-login';
 
+import { TokenInterceptor } from './auth/token.interceptor';
+
 import 'hammerjs';
 
 @NgModule({
@@ -43,7 +46,8 @@ import 'hammerjs';
     BrowserAnimationsModule,
     FontAwesomeModule,
     AppRoutingModule,
-    SocialLoginModule
+    SocialLoginModule,
+    HttpClientModule
   ],
   providers: [
     {
@@ -59,6 +63,11 @@ import 'hammerjs';
           },
         ],
       } as SocialAuthServiceConfig,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
     }
   ],
   bootstrap: [AppComponent]
