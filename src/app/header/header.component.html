@@ -2,7 +2,7 @@
 <mat-toolbar color="primary">
 
   <span><img src="/assets/images/logo_with_bg.png" height=70 width=70></span>
-  <button mat-button routerLink="/products">
+  <button mat-button routerLink="/">
     <mat-icon>home</mat-icon>
     Home
   </button>
@@ -12,7 +12,10 @@
   <div fxLayout="row" fxShow="false" fxShow.gt-sm>
       <button mat-button routerLink="/products">Products</button>
       <button mat-button routerLink="/dashboard">Dashboard</button>
-      <button mat-button routerLink="/login"><span class="material-icons">login</span> Login</button>
+      <button *ngIf="currentUser; else login" mat-button>{{this.currentUser.first_name}}</button>
+      <ng-template #login>
+        <button mat-button routerLink="/login"><span class="material-icons">login</span> Login</button>
+      </ng-template>
   </div>
   <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
    <mat-icon>menu</mat-icon>
