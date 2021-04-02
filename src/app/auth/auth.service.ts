@@ -2,46 +2,58 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BASEURL } from '../shared/baseURL';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { User } from './models';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   accessKeyURL;
-  currentUserSubject: BehaviorSubject<string>;
-  currentUser: Observable<string>;
+  private currentUserSubject: BehaviorSubject<User>;
+  public currentUser: Observable<User>;
+
   constructor(private http: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<string>(localStorage.getItem('authKey'));
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
   
+  public get currentUserValue(): User {
+    return this.currentUserSubject.value;
+  }
+
   login(token) {
     this.accessKeyURL = BASEURL + 'auth-api/rest-auth/google/';
     const requestBody = {
         access_token: token,
     };
     return this.http.post(this.accessKeyURL, requestBody)
-                .subscribe((response) => {
-                    console.log(response);
-                    localStorage.setItem('authKey', response['key']);
+                .subscribe((res) => {
+                  token = res['key'];
+                  this.http.get(BASEURL+ 'auth-api/rest-auth/user/', {
+                    headers: {skip:'skip', Authorization:'Token ' + token}
+                  }).subscribe((user)=>{
+                    user = {...user, token:token}
+                    localStorage.setItem('currentUser', JSON.stringify(user));
+                    this.currentUserSubject.next(new User(user));
+                  });
                 });
   }
 
-  isAuthenticated(): boolean{
-    if (this.currentUserSubject.value){
-        return true;
+  logout() {
+    // remove user from local storage and set current user to null
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
+  }
+
+  public isAuthenticated(): boolean {
+    if (this.currentUserValue) {
+      // authorised so return true
+      return true;
     }
-    else{
-        return false;
-    }
+    return false;
   }
 
   public createAuthHeaderValue(): string {
-    return 'TOKEN ' + this.currentUserSubject.value;
-  }
-
-  logout(){
-      localStorage.removeItem('authKey');
-      this.currentUserSubject.next(null);
+    return 'TOKEN ' + this.currentUserValue.token;
   }
 }

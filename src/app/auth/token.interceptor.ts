@@ -7,6 +7,13 @@ import { Observable } from 'rxjs/internal/Observable';
 export class TokenInterceptor implements HttpInterceptor {
   constructor(public auth: AuthService) { }
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if (request.headers.get("skip")) {
+      request = request.clone({
+        headers: request.headers.delete('skip')
+      });
+      return next.handle(request);
+    }
+
     if (this.auth.isAuthenticated()) {
       request = request.clone({
         setHeaders: {
