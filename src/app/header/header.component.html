@@ -12,9 +12,9 @@
   <div fxLayout="row" fxShow="false" fxShow.gt-sm>
       <button mat-button routerLink="/products">Products</button>
       <button mat-button routerLink="/dashboard">Dashboard</button>
-      <button *ngIf="currentUser; else login" mat-button>{{this.currentUser.first_name}}</button>
+      <button *ngIf="currentUser; else login" mat-button (click)="signOut()">Logout {{this.currentUser.first_name}}</button>
       <ng-template #login>
-        <button mat-button routerLink="/login"><span class="material-icons">login</span> Login</button>
+        <button mat-button (click)="signInWithGoogle()"><span class="material-icons">login</span> Login</button>
       </ng-template>
   </div>
   <button mat-button [mat-menu-trigger-for]="menu" fxHide="false" fxHide.gt-sm>
@@ -25,6 +25,6 @@
 <mat-menu x-position="before" #menu="matMenu">
   <button mat-menu-item routerLink="/products">Products</button>
   <button mat-menu-item routerLink="/dashboard">Dashboard</button>
-  <button mat-button routerLink="/login"><span class="material-icons">login</span> Login</button>
+  <button *ngIf="currentUser; else login" mat-button (click)="signOut()">Logout {{this.currentUser.first_name}}</button>
   <!--<button mat-menu-item>Help</button>-->
 </mat-menu>

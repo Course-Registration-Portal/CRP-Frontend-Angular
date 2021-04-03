@@ -1,12 +1,1 @@
 <p>auth works!</p>
-
-<button (click)="signInWithGoogle()">Click to login</button>
-<button (click)="signOut()">Logout</button>
-<h1>Login: {{loggedIn}}</h1>
-<h1>Provider: {{user?.provider}}</h1>
-<h1>Email: {{user?.email}}</h1>
-<h1>DP: {{user?.photoUrl}}</h1>
-<p>AuthToken: {{user?.authToken}}</p>
-
-<input type="file" (change)= "onFileSelected($event)"><input>
-<button type="button" (click)="onUpload()">Upload</button>
