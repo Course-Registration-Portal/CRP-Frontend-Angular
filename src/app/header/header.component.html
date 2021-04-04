@@ -10,7 +10,7 @@
   <!-- This fills the remaining space of the current row -->
   <span class="flex-spacer"></span>
   <div fxLayout="row" fxShow="false" fxShow.gt-sm>
-      <button mat-button routerLink="/products">Products</button>
+      <button mat-button routerLink="/courses">Courses</button>
       <button mat-button routerLink="/dashboard">Dashboard</button>
       <button *ngIf="currentUser; else login" mat-button (click)="signOut()">Logout {{this.currentUser.first_name}}</button>
       <ng-template #login>

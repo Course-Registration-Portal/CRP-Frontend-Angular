@@ -26,6 +26,7 @@ import { GoogleLoginProvider} from 'angularx-social-login';
 import { TokenInterceptor } from './auth/token.interceptor';
 
 import 'hammerjs';
+import { CourseComponent } from './course/course.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import 'hammerjs';
     HeaderComponent,
     FooterComponent,
     HomeComponent,
-    AuthComponent
+    AuthComponent,
+    CourseComponent
   ],
   imports: [
     BrowserModule,

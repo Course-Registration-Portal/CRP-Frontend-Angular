@@ -6,9 +6,11 @@ import { Routes } from '@angular/router';
 // Template: import { 'ComponentClassName' } from '../component_name/component_name.component.ts'
 import { HomeComponent } from '../home/home.component';
 import { AuthComponent } from '../auth/auth.component';
+import { CourseComponent } from '../course/course.component';
 
 export const routes: Routes = [
-  {path: 'home', component: HomeComponent},
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
-  {path: 'login', component: AuthComponent},
+  { path: 'home', component: HomeComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'login', component: AuthComponent },
+  { path: 'courses', component: CourseComponent },
 ];
