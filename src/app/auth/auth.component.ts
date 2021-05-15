@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
-import { BASEURL } from '../shared/baseURL';
+import { BASEURL } from '../shared/constants';
 
 @Component({
   selector: 'app-auth',

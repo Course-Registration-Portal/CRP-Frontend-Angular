@@ -1,14 +1,14 @@
-.mat-toolbar{
+.mat-toolbar {
   padding: 15px;
 }
 
-::ng-deep .mat-toolbar-row, .mat-toolbar-single-row{
-    height: 100%;
-};
-
+::ng-deep .mat-toolbar-row,
+.mat-toolbar-single-row {
+  height: 100%;
+}
 
 .fill-remaining-space {
   /*This fills the remaining space, by using flexbox.
  Every toolbar row uses a flexbox row layout. */
- flex: 1 1 auto;
+  flex: 1 1 auto;
 }

@@ -23,7 +23,7 @@
 
 </mat-toolbar>
 <mat-menu x-position="before" #menu="matMenu">
-  <button mat-menu-item routerLink="/products">Products</button>
+  <button mat-menu-item routerLink="/courses">Courses</button>
   <button mat-menu-item routerLink="/dashboard">Dashboard</button>
   <button *ngIf="currentUser; else login" mat-button (click)="signOut()">Logout {{this.currentUser.first_name}}</button>
   <!--<button mat-menu-item>Help</button>-->

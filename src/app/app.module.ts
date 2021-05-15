@@ -9,24 +9,36 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTableModule } from '@angular/material/table';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import {Google_login_provider} from './app.config';
+import { Google_login_provider } from './app.config';
+
+import {
+  SocialLoginModule,
+  SocialAuthServiceConfig,
+} from 'angularx-social-login';
+import { GoogleLoginProvider } from 'angularx-social-login';
+
+import { TokenInterceptor } from './auth/token.interceptor';
+
+import 'hammerjs';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { AuthComponent } from './auth/auth.component';
-
-import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
-import { GoogleLoginProvider} from 'angularx-social-login';
-
-import { TokenInterceptor } from './auth/token.interceptor';
-
-import 'hammerjs';
 import { CourseComponent } from './course/course.component';
+import { StudentHomeComponent } from './student-home/student-home.component';
+import { FacultyHomeComponent } from './faculty-home/faculty-home.component';
+import { AddCourseComponent } from './course/add-course/add-course.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +47,10 @@ import { CourseComponent } from './course/course.component';
     FooterComponent,
     HomeComponent,
     AuthComponent,
-    CourseComponent
+    CourseComponent,
+    StudentHomeComponent,
+    FacultyHomeComponent,
+    AddCourseComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,12 +59,17 @@ import { CourseComponent } from './course/course.component';
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    MatTableModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
     FlexLayoutModule,
     BrowserAnimationsModule,
     FontAwesomeModule,
     AppRoutingModule,
     SocialLoginModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [
     {
@@ -59,9 +79,7 @@ import { CourseComponent } from './course/course.component';
         providers: [
           {
             id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(
-              Google_login_provider
-            ),
+            provider: new GoogleLoginProvider(Google_login_provider),
           },
         ],
       } as SocialAuthServiceConfig,
@@ -69,9 +87,10 @@ import { CourseComponent } from './course/course.component';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
-      multi: true
-    }
+      multi: true,
+    },
   ],
-  bootstrap: [AppComponent]
+  exports: [FormsModule, ReactiveFormsModule],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
