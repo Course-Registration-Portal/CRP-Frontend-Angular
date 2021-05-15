@@ -1,0 +1,120 @@
+<mat-card class="box">
+    <mat-card-content>
+        <br>
+        <form class="example-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <mat-card-title>
+                Add Course
+            </mat-card-title>
+
+            <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Faculty User ID" type="number" formControlName="user"
+                        [ngClass]="{ 'is-invalid': submitted && f.user.errors }" />
+                    <mat-error *ngIf="submitted && f.user.errors">
+                        <div *ngIf="f.user.errors.required">Facullty user ID is required</div>
+                    </mat-error>
+                </mat-form-field>
+    
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Department ID" type="text" formControlName="department"
+                        [ngClass]="{ 'is-invalid': submitted && f.department.errors }" />
+                    <mat-error *ngIf="submitted && f.department.errors">
+                        <div *ngIf="f.department.errors.required">Department ID is required</div>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+    
+            <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Course Code" type="text" formControlName="course_code"
+                        [ngClass]="{ 'is-invalid': submitted && f.course_code.errors }" />
+                    <mat-error *ngIf="submitted && f.course_code.errors">
+                        <div *ngIf="f.course_code.errors.required">Course Code is required</div>
+                    </mat-error>
+                </mat-form-field>
+        
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Title" type="text" formControlName="title"
+                        [ngClass]="{ 'is-invalid': submitted && f.title.errors }" />
+                    <mat-error *ngIf="submitted && f.title.errors">
+                        <div *ngIf="f.title.errors.required">Title is required</div>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+    
+            <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Lectures" type="text" formControlName="lectures"
+                        [ngClass]="{ 'is-invalid': submitted && f.lectures.errors }" />
+                    <mat-error *ngIf="submitted && f.lectures.errors">
+                        <div *ngIf="f.lectures.errors.required">Lectures is required</div>
+                    </mat-error>
+                </mat-form-field>
+        
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Tutorials" type="text" formControlName="tutorials"
+                        [ngClass]="{ 'is-invalid': submitted && f.tutorials.errors }" />
+                    <mat-error *ngIf="submitted && f.tutorials.errors">
+                        <div *ngIf="f.tutorials.errors.required">Tutorials is required</div>
+                    </mat-error>
+                </mat-form-field>
+        
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Practicals" type="text" formControlName="practicals"
+                        [ngClass]="{ 'is-invalid': submitted && f.practicals.errors }" />
+                    <mat-error *ngIf="submitted && f.practicals.errors">
+                        <div *ngIf="f.practicals.errors.required">Practicals is required</div>
+                    </mat-error>
+                </mat-form-field>
+        
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Self Study" type="text" formControlName="self_study"
+                        [ngClass]="{ 'is-invalid': submitted && f.self_study.errors }" />
+                    <mat-error *ngIf="submitted && f.self_study.errors">
+                        <div *ngIf="f.self_study.errors.required">Self Study is required</div>
+                    </mat-error>
+                </mat-form-field>
+        
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Course Credits" type="text" formControlName="course_credits"
+                        [ngClass]="{ 'is-invalid': submitted && f.course_credits.errors }" />
+                    <mat-error *ngIf="submitted && f.course_credits.errors">
+                        <div *ngIf="f.course_credits.errors.required">Course Credits is required</div>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+    
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Offering Department" type="text" formControlName="offering_department"
+                    [ngClass]="{ 'is-invalid': submitted && f.offering_department.errors }" />
+                <mat-error *ngIf="submitted && f.offering_department.errors">
+                    <div *ngIf="f.offering_department.errors.required">Offering Department is required</div>
+                </mat-error>
+            </mat-form-field>
+    
+            <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="center center">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Semester" type="text" formControlName="semester"
+                        [ngClass]="{ 'is-invalid': submitted && f.semester.errors }" />
+                    <mat-error *ngIf="submitted && f.semester.errors">
+                        <div *ngIf="f.semester.errors.required">Semester is required</div>
+                    </mat-error>
+                </mat-form-field>
+        
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Year" type="text" formControlName="year"
+                        [ngClass]="{ 'is-invalid': submitted && f.year.errors }" />
+                    <mat-error *ngIf="submitted && f.year.errors">
+                        <div *ngIf="f.year.errors.required">Year is required</div>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+    
+    
+        <button mat-stroked-button color="primary" class="btn-block">
+            Register
+        </button>
+    
+        </form>
+    </mat-card-content>
+</mat-card>
