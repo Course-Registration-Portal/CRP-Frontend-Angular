@@ -89,6 +89,7 @@ export class AddCourseComponent implements OnInit {
     this.http
       .post(BASEURL + 'faculty/faculty-courses/', facultyTakesCourse)
       .subscribe((response) => {
+        alert('The course was added successfully.');
         this.router.navigate['/courses'];
       });
   }

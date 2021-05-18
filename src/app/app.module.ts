@@ -10,6 +10,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -35,7 +37,10 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { AuthComponent } from './auth/auth.component';
-import { CourseComponent } from './course/course.component';
+import {
+  CourseComponent,
+  CourseDetailsDialogComponent,
+} from './course/course.component';
 import { StudentHomeComponent } from './student-home/student-home.component';
 import { FacultyHomeComponent } from './faculty-home/faculty-home.component';
 import { AddCourseComponent } from './course/add-course/add-course.component';
@@ -48,6 +53,7 @@ import { AddCourseComponent } from './course/add-course/add-course.component';
     HomeComponent,
     AuthComponent,
     CourseComponent,
+    CourseDetailsDialogComponent,
     StudentHomeComponent,
     FacultyHomeComponent,
     AddCourseComponent,
@@ -60,6 +66,8 @@ import { AddCourseComponent } from './course/add-course/add-course.component';
     MatIconModule,
     MatMenuModule,
     MatTableModule,
+    MatPaginatorModule,
+    MatDialogModule,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
